@@ -6,8 +6,8 @@ class MeteoDto {
   String? timezone;
   String? timezoneAbbreviation;
   double? elevation;
-  HourlyUnits? hourlyUnits;
-  Hourly? hourly;
+  DailyUnits? dailyUnits;
+  Daily? daily;
 
   MeteoDto.fromJson(Map<String, dynamic> json) {
     latitude = json['latitude'];
@@ -17,8 +17,8 @@ class MeteoDto {
     timezone = json['timezone'];
     timezoneAbbreviation = json['timezone_abbreviation'];
     elevation = json['elevation'];
-    hourlyUnits = json['hourly_units'] != null ? HourlyUnits.fromJson(json['hourly_units']) : null;
-    hourly = json['hourly'] != null ? Hourly.fromJson(json['hourly']) : null;
+    dailyUnits = json['daily_units'] != null ? DailyUnits.fromJson(json['daily_units']) : null;
+    daily = json['daily'] != null ? Daily.fromJson(json['daily']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -30,66 +30,54 @@ class MeteoDto {
     data['timezone'] = timezone;
     data['timezone_abbreviation'] = timezoneAbbreviation;
     data['elevation'] = elevation;
-    data['hourly_units'] = hourlyUnits != null ? hourlyUnits!.toJson() : null;
-    data['hourly'] = hourly != null ? hourly!.toJson() : null;
+    data['daily_units'] = dailyUnits != null ? dailyUnits!.toJson() : null;
+    data['daily'] = daily != null ? daily!.toJson() : null;
     return data;
   }
 }
 
-class HourlyUnits {
+class DailyUnits {
   String? time;
-  String? temperature2m;
+  String? temperature2mMax;
+  String? temperature2mMin;
   String? weatherCode;
-  String? relativeHumidity2m;
-  String? windSpeed10m;
-  String? pressureMsl;
 
-  HourlyUnits.fromJson(Map<String, dynamic> json) {
+  DailyUnits.fromJson(Map<String, dynamic> json) {
     time = json['time'];
-    temperature2m = json['temperature_2m'];
+    temperature2mMax = json['temperature_2m_max'];
+    temperature2mMin = json['temperature_2m_min'];
     weatherCode = json['weathercode'];
-    relativeHumidity2m = json['relativehumidity_2m'];
-    windSpeed10m = json['windspeed_10m'];
-    pressureMsl = json['pressure_msl'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['time'] = time;
-    data['temperature_2m'] = temperature2m;
+    data['temperature_2m_max'] = temperature2mMax;
+    data['temperature_2m_min'] = temperature2mMin;
     data['weathercode'] = weatherCode;
-    data['relativehumidity_2m'] = relativeHumidity2m;
-    data['windspeed_10m'] = windSpeed10m;
-    data['pressure_msl'] = pressureMsl;
     return data;
   }
 }
 
-class Hourly {
+class Daily {
   List<String>? time;
-  List<double>? temperature2m;
+  List<double>? temperature2mMax;
+  List<double>? temperature2mMin;
   List<int>? weatherCode;
-  List<int>? relativeHumidity2m;
-  List<double>? windSpeed10m;
-  List<double>? pressureMsl;
 
-  Hourly.fromJson(Map<String, dynamic> json) {
+  Daily.fromJson(Map<String, dynamic> json) {
     time = json['time']?.cast<String>();
-    temperature2m = json['temperature_2m']?.cast<double>();
+    temperature2mMax = json['temperature_2m_max']?.cast<double>();
+    temperature2mMin = json['temperature_2m_min']?.cast<double>();
     weatherCode = json['weathercode']?.cast<int>();
-    relativeHumidity2m = json['relativehumidity_2m']?.cast<int>();
-    windSpeed10m = json['windspeed_10m']?.cast<double>();
-    pressureMsl = json['pressure_msl']?.cast<double>();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['time'] = time;
-    data['temperature_2m'] = temperature2m;
+    data['temperature_2m_max'] = temperature2mMax;
+    data['temperature_2m_min'] = temperature2mMin;
     data['weathercode'] = weatherCode;
-    data['relativehumidity_2m'] = relativeHumidity2m;
-    data['windspeed_10m'] = windSpeed10m;
-    data['pressure_msl'] = pressureMsl;
     return data;
   }
 }
