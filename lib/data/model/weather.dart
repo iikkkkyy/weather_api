@@ -1,8 +1,8 @@
 class Weather {
-  List<String> time;
-  List<num> maxTemp;
-  List<num> minTemp;
-  List<int> weatherCode;
+  List<String>? time;
+  List<num>? maxTemp;
+  List<num>? minTemp;
+  List<int>? weatherCode;
 
   Weather({
     required this.time,
