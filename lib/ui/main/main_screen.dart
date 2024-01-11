@@ -51,7 +51,7 @@ class WeatherScreen extends StatelessWidget {
                 children: [
                   Text(
                     // 날짜 + 요일 표시
-                    '${viewModel.timeList?[index] ?? ''} (${viewModel.getDayOfWeek(index)})',
+                    '${viewModel.timeList[index].isNotEmpty ? viewModel.timeList[index] : ''} (${viewModel.getDayOfWeek(index)})',
                     style: TextStyle(fontSize: 16.0),
                   ),
                   const SizedBox(height: 10),
